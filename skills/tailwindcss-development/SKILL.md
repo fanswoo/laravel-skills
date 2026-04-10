@@ -1,41 +1,46 @@
 ---
 name: tailwindcss-development
-description: "Styles applications using Tailwind CSS v4 utilities. Activates when adding styles, restyling components, working with gradients, spacing, layout, flex, grid, responsive design, dark mode, colors, typography, or borders; or when the user mentions CSS, styling, classes, Tailwind, restyle, hero section, cards, buttons, or any visual/UI changes."
+description: "使用 Tailwind CSS v4 utilities 為應用程式設定樣式。當新增樣式、重新調整元件樣式、處理漸層、間距、版面配置、flex、grid、響應式設計、深色模式、顏色、排版或邊框時啟用；或當使用者提到 CSS、樣式、classes、Tailwind、restyle、hero section、卡片、按鈕或任何視覺/UI 變更時也會啟用。"
 license: MIT
 metadata:
   author: laravel
 ---
 
-# Tailwind CSS Development
+# Tailwind CSS 開發
 
-## When to Apply
+## 何時啟用
 
-Activate this skill when:
+在以下情境啟用此技能：
 
-- Adding styles to components or pages
-- Working with responsive design
-- Implementing dark mode
-- Extracting repeated patterns into components
-- Debugging spacing or layout issues
+- 為元件或頁面新增樣式
+- 處理響應式設計
+- 實作深色模式
+- 將重複的樣式抽取為元件
+- 除錯間距或版面配置問題
 
-## Documentation
+## 文件查詢
 
-Use `search-docs` for detailed Tailwind CSS v4 patterns and documentation.
+使用 `search-docs` 取得 Tailwind CSS v4 的詳細模式與文件。
 
-## Basic Usage
+## 基本使用
 
-- Use Tailwind CSS classes to style HTML. Check and follow existing Tailwind conventions in the project before introducing new patterns.
-- Offer to extract repeated patterns into components that match the project's conventions (e.g., Blade, JSX, Vue).
-- Consider class placement, order, priority, and defaults. Remove redundant classes, add classes to parent or child elements carefully to reduce repetition, and group elements logically.
+- 使用 Tailwind CSS classes 為 HTML 設定樣式。在引入新的樣式模式前，先檢查並遵循專案既有的 Tailwind 慣例。
+- 主動建議將重複的樣式模式抽取為符合專案慣例的元件（例如 Blade、JSX、Vue）。
+- 留意 class 的擺放位置、順序、優先順序與預設值。移除多餘的 classes，謹慎地將 classes 放到父層或子層元素以減少重複，並將元素做合理的群組。
 
-## Tailwind CSS v4 Specifics
+## 嚴格規範
 
-- Always use Tailwind CSS v4 and avoid deprecated utilities.
-- `corePlugins` is not supported in Tailwind v4.
+- **禁止任何自定義名稱的 CSS**：不得撰寫自定義 class 名稱或自訂 CSS 樣式（例如 `.my-card`、`.custom-button`）。一律只能使用 Tailwind 提供的 utility classes。若需要複用樣式，請抽成元件（Blade/Vue/JSX）而不是自訂 CSS。
+- **禁止使用 arbitrary values**：不得使用方括號的任意值語法，例如 `w-[12px]`、`text-[20px]`、`bg-[#123456]`、`mt-[13px]`。一律使用 Tailwind 預設的 spacing / size / color scale。若預設 scale 不足，請透過 `@theme` 擴充設計 token，而非使用 arbitrary values。
 
-### CSS-First Configuration
+## Tailwind CSS v4 特定事項
 
-In Tailwind v4, configuration is CSS-first using the `@theme` directive — no separate `tailwind.config.js` file is needed:
+- 一律使用 Tailwind CSS v4，並避免使用已棄用的 utilities。
+- Tailwind v4 不支援 `corePlugins`。
+
+### CSS-First 設定
+
+在 Tailwind v4 中，設定改為 CSS-first，透過 `@theme` 指令來完成——不再需要獨立的 `tailwind.config.js` 檔案：
 
 <!-- CSS-First Config -->
 ```css
@@ -44,9 +49,9 @@ In Tailwind v4, configuration is CSS-first using the `@theme` directive — no s
 }
 ```
 
-### Import Syntax
+### Import 語法
 
-In Tailwind v4, import Tailwind with a regular CSS `@import` statement instead of the `@tailwind` directives used in v3:
+在 Tailwind v4 中，使用標準的 CSS `@import` 語法引入 Tailwind，取代 v3 使用的 `@tailwind` 指令：
 
 <!-- v4 Import Syntax -->
 ```diff
@@ -56,11 +61,11 @@ In Tailwind v4, import Tailwind with a regular CSS `@import` statement instead o
 + @import "tailwindcss";
 ```
 
-### Replaced Utilities
+### 被取代的 Utilities
 
-Tailwind v4 removed deprecated utilities. Use the replacements shown below. Opacity values remain numeric.
+Tailwind v4 移除了已棄用的 utilities。請使用下表所列的替代方案。不透明度的數值仍維持數字格式。
 
-| Deprecated | Replacement |
+| 已棄用 | 替代方案 |
 |------------|-------------|
 | bg-opacity-* | bg-black/* |
 | text-opacity-* | text-black/* |
@@ -74,9 +79,9 @@ Tailwind v4 removed deprecated utilities. Use the replacements shown below. Opac
 | decoration-slice | box-decoration-slice |
 | decoration-clone | box-decoration-clone |
 
-## Spacing
+## 間距
 
-Use `gap` utilities instead of margins for spacing between siblings:
+在同層元素之間使用 `gap` utilities 來設定間距，而不是使用 margin：
 
 <!-- Gap Utilities -->
 ```html
@@ -86,9 +91,9 @@ Use `gap` utilities instead of margins for spacing between siblings:
 </div>
 ```
 
-## Dark Mode
+## 深色模式
 
-If existing pages and components support dark mode, new pages and components must support it the same way, typically using the `dark:` variant:
+若既有的頁面與元件支援深色模式，新增的頁面與元件也必須以相同方式支援，通常是透過 `dark:` variant：
 
 <!-- Dark Mode -->
 ```html
@@ -97,9 +102,9 @@ If existing pages and components support dark mode, new pages and components mus
 </div>
 ```
 
-## Common Patterns
+## 常見模式
 
-### Flexbox Layout
+### Flexbox 版面配置
 
 <!-- Flexbox Layout -->
 ```html
@@ -109,7 +114,7 @@ If existing pages and components support dark mode, new pages and components mus
 </div>
 ```
 
-### Grid Layout
+### Grid 版面配置
 
 <!-- Grid Layout -->
 ```html
@@ -120,10 +125,12 @@ If existing pages and components support dark mode, new pages and components mus
 </div>
 ```
 
-## Common Pitfalls
+## 常見陷阱
 
-- Using deprecated v3 utilities (bg-opacity-*, flex-shrink-*, etc.)
-- Using `@tailwind` directives instead of `@import "tailwindcss"`
-- Trying to use `tailwind.config.js` instead of CSS `@theme` directive
-- Using margins for spacing between siblings instead of gap utilities
-- Forgetting to add dark mode variants when the project uses dark mode
+- 使用已棄用的 v3 utilities（bg-opacity-*、flex-shrink-* 等）
+- 使用 `@tailwind` 指令而非 `@import "tailwindcss"`
+- 嘗試使用 `tailwind.config.js` 而非 CSS `@theme` 指令
+- 在同層元素之間使用 margin 而非 gap utilities 來設定間距
+- 專案使用深色模式時忘記加上深色模式 variants
+- 撰寫自定義 class 名稱或自訂 CSS 樣式
+- 使用 arbitrary values（例如 `w-[12px]`、`text-[#abcdef]`）
